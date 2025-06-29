@@ -16,8 +16,14 @@ import java.util.function.Function;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(ExampleMod.MOD_ID);
 
-    public static final DeferredBlock<Block> BISMUTH_BLOCK = registerBlock("bismuth_block", Block::new, BlockBehaviour.Properties.of().strength(4F).requiresCorrectToolForDrops().sound(SoundType.AMETHYST));
-    public static final DeferredBlock<Block> BISMUTH_ORE = registerBlock("bismuth_ore", properties -> new DropExperienceBlock(UniformInt.of(2, 4), properties), BlockBehaviour.Properties.of().strength(3F).requiresCorrectToolForDrops().sound(SoundType.STONE).randomTicks());
+    public static final DeferredBlock<Block> BISMUTH_BLOCK =
+            registerBlock("bismuth_block", Block::new, BlockBehaviour.Properties.of().strength(4F).requiresCorrectToolForDrops().sound(SoundType.AMETHYST));
+    public static final DeferredBlock<Block> BISMUTH_ORE =
+            registerBlock("bismuth_ore", properties -> new DropExperienceBlock(UniformInt.of(2, 4), properties), BlockBehaviour.Properties.of().strength(3F).requiresCorrectToolForDrops().sound(SoundType.STONE).randomTicks());
+    public static final DeferredBlock<Block> BISMUTH_DEEPSLATE_ORE =
+            registerBlock("bismuth_deepslate_ore",
+                          properties -> new DropExperienceBlock(UniformInt.of(3, 6), properties), BlockBehaviour.Properties.of().strength(4F).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE).randomTicks());
+
 
     private static <B extends Block> DeferredBlock<B> registerBlock(String name, Function<BlockBehaviour.Properties, ? extends B> blockFactory, BlockBehaviour.Properties blockProperties) {
         DeferredBlock<B> block = BLOCKS.registerBlock(name, blockFactory, blockProperties);

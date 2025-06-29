@@ -3,6 +3,7 @@
   "item.examplemod.raw_bismuth": "Raw Bismuth",
   "block.examplemod.bismuth_block": "Bismuth Block",
   "block.examplemod.bismuth_ore": "Bismuth Ore",
+  "block.examplemod.bismuth_deepslate_ore": "Bismuth Deepslate Ore",
   "creativetab.examplemod.bismuth_items": "Bismuth Items",
   "creativetab.examplemod.bismuth_blocks": "Bismuth Blocks"
 }
