@@ -1,6 +1,7 @@
 package com.omgisa.examplemod;
 
 import com.mojang.logging.LogUtils;
+import com.omgisa.examplemod.block.ModBlocks;
 import com.omgisa.examplemod.item.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -40,6 +41,9 @@ public class ExampleMod {
         // Register the items in the ModItems class
         ModItems.register(modEventBus);
 
+        // Register the blocks in the ModBlocks class
+        ModBlocks.register(modEventBus);
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
@@ -56,6 +60,10 @@ public class ExampleMod {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.BISMUTH);
             event.accept(ModItems.RAW_BISMUTH);
+        }
+
+        if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ModBlocks.BISMUTH_BLOCK);
         }
     }
 
