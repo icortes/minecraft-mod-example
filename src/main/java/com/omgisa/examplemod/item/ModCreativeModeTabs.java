@@ -23,6 +23,7 @@ public class ModCreativeModeTabs {
                                                             .displayItems((parameters, output) -> {
                                                                 output.accept(ModItems.BISMUTH);
                                                                 output.accept(ModItems.RAW_BISMUTH);
+                                                                output.accept(ModItems.CHISEL);
                                                             }).build());
 
     public static final Supplier<CreativeModeTab> BISMUTH_BLOCK_TAB =
