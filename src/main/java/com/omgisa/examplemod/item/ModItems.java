@@ -2,7 +2,13 @@ package com.omgisa.examplemod.item;
 
 import com.omgisa.examplemod.ExampleMod;
 import com.omgisa.examplemod.item.custom.ChiselItem;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.item.component.Consumable;
+import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -15,6 +21,16 @@ public class ModItems {
 
     public static final DeferredItem<Item> CHISEL =
             ITEMS.registerItem("chisel", ChiselItem::new, new Item.Properties().durability(32));
+
+    public static final DeferredItem<Item> RADISH =
+            ITEMS.registerItem("radish", Item::new,
+                               new Item.Properties().food(ModFoodProperties.RADISH)
+                                                    .component(DataComponents.CONSUMABLE, Consumable.builder()
+                                                                                                    .consumeSeconds(2F)
+                                                                                                    .animation(ItemUseAnimation.EAT)
+                                                                                                    .hasConsumeParticles(false)
+                                                                                                    .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 600, 0), 0.35F))
+                                                                                                    .build()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
