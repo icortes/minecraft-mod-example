@@ -2,6 +2,7 @@ package com.omgisa.examplemod.item;
 
 import com.omgisa.examplemod.ExampleMod;
 import com.omgisa.examplemod.item.custom.ChiselItem;
+import com.omgisa.examplemod.item.custom.FuelItem;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -21,6 +22,11 @@ public class ModItems {
 
     public static final DeferredItem<Item> CHISEL =
             ITEMS.registerItem("chisel", ChiselItem::new, new Item.Properties().durability(32));
+
+    public static final DeferredItem<Item> FROSTFIRE_ICE = ITEMS.registerItem("frostfire_ice",
+                                                                              (props) -> new FuelItem(props, 800),
+                                                                              new Item.Properties());
+    public static final DeferredItem<Item> STARLIGHT_ASHES = ITEMS.registerItem("starlight_ashes", Item::new, new Item.Properties());
 
     public static final DeferredItem<Item> RADISH =
             ITEMS.registerItem("radish", Item::new,
