@@ -1,6 +1,7 @@
 package com.omgisa.examplemod.block;
 
 import com.omgisa.examplemod.ExampleMod;
+import com.omgisa.examplemod.block.custom.MagicBlock;
 import com.omgisa.examplemod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
@@ -23,6 +24,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> BISMUTH_DEEPSLATE_ORE =
             registerBlock("bismuth_deepslate_ore",
                           properties -> new DropExperienceBlock(UniformInt.of(3, 6), properties), BlockBehaviour.Properties.of().strength(4F).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE).randomTicks());
+    public static final DeferredBlock<Block> MAGIC_BLOCK =
+            registerBlock("magic_block", MagicBlock::new,
+                          BlockBehaviour.Properties.of().strength(2F).requiresCorrectToolForDrops());
 
 
     private static <B extends Block> DeferredBlock<B> registerBlock(String name, Function<BlockBehaviour.Properties, ? extends B> blockFactory, BlockBehaviour.Properties blockProperties) {
