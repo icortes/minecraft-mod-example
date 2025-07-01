@@ -1,6 +1,6 @@
 package com.omgisa.examplemod.block.custom;
 
-import com.omgisa.examplemod.item.ModItems;
+import com.omgisa.examplemod.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -31,7 +31,7 @@ public class MagicBlock extends Block {
     @Override
     public void stepOn(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Entity entity) {
         if (entity instanceof ItemEntity itemEntity) {
-            if (itemEntity.getItem().getItem() == ModItems.RAW_BISMUTH.get()) {
+            if (isValidItem(itemEntity.getItem())) {
                 itemEntity.setItem(new ItemStack(Items.DIAMOND, itemEntity.getItem().getCount()));
             }
         }
@@ -42,5 +42,9 @@ public class MagicBlock extends Block {
             }
         }
         super.stepOn(level, pos, state, entity);
+    }
+
+    private boolean isValidItem(ItemStack item) {
+        return item.is(ModTags.Items.TRANSFORMABLE_ITEMS);
     }
 }
