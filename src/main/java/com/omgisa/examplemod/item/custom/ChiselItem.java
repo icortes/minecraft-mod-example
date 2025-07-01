@@ -1,12 +1,17 @@
 package com.omgisa.examplemod.item.custom;
 
 import com.omgisa.examplemod.block.ModBlocks;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -15,6 +20,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public class ChiselItem extends Item {
     private static final Map<Block, Block> CHISEL_MAP = Map.of(
@@ -47,5 +53,15 @@ public class ChiselItem extends Item {
         }
 
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull TooltipDisplay tooltipDisplay, @NotNull Consumer<Component> tooltipAdder, @NotNull TooltipFlag flag) {
+        if (Screen.hasShiftDown()) {
+            tooltipAdder.accept(Component.translatable("tooltip.examplemod.chisel.shift_down"));
+        } else {
+            tooltipAdder.accept(Component.translatable("tooltip.examplemod.chisel"));
+        }
+        super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, flag);
     }
 }
